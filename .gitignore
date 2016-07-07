@@ -1,0 +1,11 @@
+Project1/.settings/*.prefs
+Project1/target/classes/com/endava/test/Project1/*.class
+Project1/target/test-classes/com/endava/test/Project1/*.class
+Project1/maven-status/maven-compiler-plugin/compile/default-compile/*.lst
+Project1/.classpath
+workshopDataAndLanguage/Biblioteca/bin/*
+workshopDataAndLanguage/Biblioteca/.classpath
+workshopDataAndLanguage/Biblioteca/.project
+workshopDataAndLanguage/NumereComplexe/bin/*
+workshopDataAndLanguage/NumereComplexe/.classpath
+workshopDataAndLanguage/NumereComplexe/.project
