@@ -50,7 +50,7 @@ public class Carte {
 	}
 
 	public String toString() {
-		return "Detalii carte:" + "\nTitlu: " + titlu + ",\nAutor:  " + autor + ",\nEditura: " + editura
-				+ ",\nNr pagini: " + numarPagini;
+		return "Detalii carte:" + "\nTitlu: " + titlu + "\nAutor:  " + autor + "\nEditura: " + editura + "\nNr pagini: "
+				+ numarPagini;
 	}
 }
