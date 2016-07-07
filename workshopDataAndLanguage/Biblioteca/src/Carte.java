@@ -49,6 +49,12 @@ public class Carte {
 		this.numarPagini = numarPagini;
 	}
 
+	public boolean equals(Carte c) {
+		if (this.autor.equals(c.getAutor()) && this.titlu.equals(c.getTitlu()))
+			return true;
+		return false;
+	}
+
 	public String toString() {
 		return "Detalii carte:" + "\nTitlu: " + titlu + "\nAutor:  " + autor + "\nEditura: " + editura + "\nNr pagini: "
 				+ numarPagini;
