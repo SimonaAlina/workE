@@ -29,6 +29,6 @@ public class NumarComplex {
 	}
 
 	public String toString() {
-		return "(" + re + "," + im + ")";
+		return "(" + re + "," + im + "i)";
 	}
 }
