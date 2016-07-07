@@ -49,4 +49,8 @@ public class Carte {
 		this.numarPagini = numarPagini;
 	}
 
+	public String toString() {
+		return "Detalii carte:" + "\nTitlu: " + titlu + ",\nAutor:  " + autor + ",\nEditura: " + editura
+				+ ",\nNr pagini: " + numarPagini;
+	}
 }
