@@ -56,7 +56,7 @@ public class Carte {
 	}
 
 	public String toString() {
-		return "Detalii carte:" + "\nTitlu: " + titlu + "\nAutor:  " + autor + "\nEditura: " + editura + "\nNr pagini: "
+		return "Detalii carte:" + "\nTitlu: " + titlu.toUpperCase() + "\nAutor:  " + autor + "\nEditura: " + editura.toLowerCase() + "\nNr pagini: "
 				+ numarPagini;
 	}
 }
