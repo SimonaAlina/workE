@@ -24,7 +24,7 @@ public class Test {
 
 		Carte c2 = new Carte("Java8", "Scott Selikoff", "New World", 330);
 
-		System.out.println(Verificari.isDuplicate(c1, c2) == true ? "Duplicate\n" : "Not Duplicate\n");
+		System.out.println(Verificari.isDuplicate(c1, c2) ? "Duplicate\n" : "Not Duplicate\n");
 		System.out.println(Verificari.getBookWithMorePages(c1, c2).toString());
 	}
 

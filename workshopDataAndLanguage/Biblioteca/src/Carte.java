@@ -49,10 +49,26 @@ public class Carte {
 		this.numarPagini = numarPagini;
 	}
 
-	public boolean equals(Carte c) {
-		if (this.autor.equals(c.getAutor()) && this.titlu.equals(c.getTitlu()))
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		return false;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Carte other = (Carte) obj;
+		if (autor == null) {
+			if (other.autor != null)
+				return false;
+		} else if (!autor.equals(other.autor))
+			return false;
+		if (titlu == null) {
+			if (other.titlu != null)
+				return false;
+		} else if (!titlu.equals(other.titlu))
+			return false;
+		return true;
 	}
 
 	public String toString() {
