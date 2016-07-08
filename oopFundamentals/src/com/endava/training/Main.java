@@ -3,6 +3,7 @@ package com.endava.training;
 import com.endava.training.shape.impl.Circle;
 import com.endava.training.shape.impl.Square;
 import com.endava.training.shape.impl.Triangle;
+import com.endava.training.examples.ExtendedSimple;
 
 public class Main {
 
@@ -21,6 +22,10 @@ public class Main {
 		
 		System.out.println("\nSquare - area: " + sq.computeArea());
 		System.out.println("Square - perimeter: " + sq.computePerimeter());
+		
+		System.out.println();
+		
+		new ExtendedSimple(10, 11);
 	}
 
 }
