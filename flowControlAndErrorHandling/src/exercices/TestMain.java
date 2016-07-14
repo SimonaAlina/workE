@@ -1,5 +1,7 @@
 package exercices;
 
+import java.util.Arrays;
+
 public class TestMain {
 
 	public static void main(String[] args) {
@@ -54,7 +56,13 @@ public class TestMain {
 		} catch (StackOverflowError ex) {
 			System.out.println("Catch - Method which throw StackOverflowError");
 		}
-		System.out.println("After catch errors\n");
+		System.out.println("Continue running after catch errors\n");
+		
+		Calculator c = new Calculator();
+		c.add(1024*1024, 1024*1024);
+		//c.divide(10, 0);
+		//c.average(Arrays.asList(1,2,3));
+		c.testFinally();
 	}
 
 }
