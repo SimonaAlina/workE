@@ -32,21 +32,29 @@ public class TestMain {
 
 		int[] scores1 = { 1, 3, 4 };
 		System.out.println(f.scoresIncreasing(scores1));
-		int[] scores2 ={1,3,2};
+		int[] scores2 = { 1, 3, 2 };
 		System.out.println(f.scoresIncreasing(scores2));
-		int[] scores3 ={1,1,4};
+		int[] scores3 = { 1, 1, 4 };
 		System.out.println(f.scoresIncreasing(scores3));
 		System.out.println();
-		
-		System.out.println(f.sumHeights(new int[]{5, 3, 6, 7, 2}, 2, 4));
-		System.out.println(f.sumHeights(new int[]{5, 3, 6, 7, 2}, 0, 1));
-		System.out.println(f.sumHeights(new int[]{5, 3, 6, 7, 2}, 0, 4));
+
+		System.out.println(f.sumHeights(new int[] { 5, 3, 6, 7, 2 }, 2, 4));
+		System.out.println(f.sumHeights(new int[] { 5, 3, 6, 7, 2 }, 0, 1));
+		System.out.println(f.sumHeights(new int[] { 5, 3, 6, 7, 2 }, 0, 4));
 		System.out.println();
 
 		ErrorHandling e = new ErrorHandling();
-		e.testErrorOutOfMemoryError();
-		e.testStackOverflowError();
-		System.out.println();
+		try {
+			e.testErrorOutOfMemoryError();
+		} catch (OutOfMemoryError ex) {
+			System.out.println("Catch - Method which throw OutOfMemoryError");
+		}
+		try {
+			e.testStackOverflowError();
+		} catch (StackOverflowError ex) {
+			System.out.println("Catch - Method which throw StackOverflowError");
+		}
+		System.out.println("After catch errors\n");
 	}
 
 }
