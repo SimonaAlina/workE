@@ -57,11 +57,17 @@ public class TestMain {
 			System.out.println("Catch - Method which throw StackOverflowError");
 		}
 		System.out.println("Continue running after catch errors\n");
-		
+
 		Calculator c = new Calculator();
-		c.add(1024*1024, 1024*1024);
-		//c.divide(10, 0);
-		//c.average(Arrays.asList(1,2,3));
+		c.add(2147483647, 5);
+		
+		c.divide(10, 0);
+		
+		try {
+			c.average(Arrays.asList(1,2,3));
+		} catch (OverflowException e1) {
+			e1.printStackTrace();
+		}
 		c.testFinally();
 	}
 
