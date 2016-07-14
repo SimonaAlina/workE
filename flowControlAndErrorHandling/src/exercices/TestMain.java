@@ -61,13 +61,9 @@ public class TestMain {
 		Calculator c = new Calculator();
 		c.add(2147483647, 5);
 		
-		c.divide(10, 0);
+		c.divide(10, 120);
 		
-		try {
-			c.average(Arrays.asList(1,2,3));
-		} catch (OverflowException e1) {
-			e1.printStackTrace();
-		}
+		c.average(Arrays.asList(1,2,3));
 		c.testFinally();
 	}
 

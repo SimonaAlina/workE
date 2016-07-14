@@ -5,9 +5,9 @@ import java.util.List;
 public class Calculator {
 
 	public Integer add(Integer a, Integer b) {
-		Integer sum = 0;
+		long sum = 0;
 		try {
-			sum = new Integer(a + b);
+			sum = a + b;
 			if (sum >= Integer.MAX_VALUE)
 				throw new OverflowException("OverflowException");
 			if(sum <= Integer.MIN_VALUE)
@@ -17,7 +17,7 @@ public class Calculator {
 		} catch(UnderflowException ex) {
 			System.out.println("catch UnderflowException");
 		}
-		return sum;
+		return new Integer((int)sum);
 	}
 
 	public Integer divide(Integer a, Integer b) {
@@ -26,7 +26,7 @@ public class Calculator {
 		return new Integer(a / b);
 	}
 
-	public Integer average(List<Integer> lst) throws OverflowException {
+	public Integer average(List<Integer> lst) {
 		Integer sum = new Integer(0);
 		for (Integer in : lst) {
 			sum = this.add(sum, in);
@@ -47,33 +47,5 @@ public class Calculator {
 			System.out.println("execute finally block");
 		}
 		System.out.println("After try-catch-finally");
-	}
-}
-
-/*
- * extends RuntimeException -> unchecked;
- * extends Exception -> checked
- */
-class OverflowException extends Exception {
-	private static final long serialVersionUID = 1L;
-
-	public OverflowException() {
-		super();
-	}
-
-	public OverflowException(String s) {
-		super(s);
-	}
-}
-
-class UnderflowException extends Exception {
-	private static final long serialVersionUID = 1L;
-
-	public UnderflowException() {
-		super();
-	}
-
-	public UnderflowException(String s) {
-		super(s);
 	}
 }
