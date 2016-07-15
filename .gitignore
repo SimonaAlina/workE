@@ -20,3 +20,10 @@ oopFundamentals/.classpath
 flowControlAndErrorHandling/bin/*
 flowControlAndErrorHandling/.project
 flowControlAndErrorHandling/.classpath
+StackCollection/.settings
+StackCollection/bin/*
+StackCollection/.classpath
+StackCollection/.project
+javaTypeSystem/bin/*
+javaTypeSystem/.classpath
+javaTypeSystem/.project
