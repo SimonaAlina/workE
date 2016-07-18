@@ -6,6 +6,7 @@ import annotation.Author;
 import annotation.ExecutionPriority;
 import annotation.PrintPriority;
 import annotation.Test;
+import annotation.Skip;
 import example.TestExample;
 
 import java.lang.annotation.Annotation;
@@ -28,39 +29,6 @@ public class Main {
 		getAuthorInfo(clazz);
 		prioritizeExecution();
 		allClasesByPriorityFromHightoLow();
-	}
-
-	private static void executeMethods(Class clazz) {
-		for (Method method : clazz.getDeclaredMethods()) {
-			if (method.isAnnotationPresent(PrintPriority.class)) {
-				Annotation annotation = method.getAnnotation(PrintPriority.class);
-				PrintPriority print = (PrintPriority) annotation;
-				try {
-					method.invoke(clazz.newInstance());
-				} catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
-					e.printStackTrace();
-				}
-
-			}
-			if (method.isAnnotationPresent(Test.class)) {
-				Annotation annotation = method.getAnnotation(Test.class);
-				Test test = (Test) annotation;
-
-				if (test.enabled()) {
-					try {
-						method.invoke(clazz.newInstance());
-						System.out.printf("%s - Test '%s' - passed %n", ++count, method.getName());
-						passed++;
-					} catch (Throwable e) {
-						System.out.printf("%s - Test '%s' - failed: %s %n", ++count, method.getName(), e.getCause());
-						failed++;
-					}
-				} else {
-					System.out.printf("%s - Test '%s' - ignored %n", ++count, method.getName());
-					ignore++;
-				}
-			}
-		}
 	}
 
 	private static void getAuthorInfo(Class<TestExample> clazz) {
@@ -92,6 +60,12 @@ public class Main {
 		Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(ExecutionPriority.class);
 
 		for (Class<?> clazz : annotated) {
+			if(clazz.isAnnotationPresent(Skip.class)) {
+				Annotation annotation = clazz.getAnnotation(Skip.class);
+				Skip skipAnn = (Skip)annotation;
+				if(skipAnn.disabled())
+					continue;	
+			}
 			if (clazz.isAnnotationPresent(ExecutionPriority.class)) {
 				Annotation annotation = clazz.getAnnotation(ExecutionPriority.class);
 
@@ -105,6 +79,39 @@ public class Main {
 					break;
 				case MEDIUM:
 					mediumPriorityClases.add(clazz);
+				}
+			}
+		}
+	}
+
+	private static void executeMethods(Class clazz) {
+		for (Method method : clazz.getDeclaredMethods()) {
+			if (method.isAnnotationPresent(PrintPriority.class)) {
+				Annotation annotation = method.getAnnotation(PrintPriority.class);
+				PrintPriority print = (PrintPriority) annotation;
+				try {
+					method.invoke(clazz.newInstance());
+				} catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
+					e.printStackTrace();
+				}
+
+			}
+			if (method.isAnnotationPresent(Test.class)) {
+				Annotation annotation = method.getAnnotation(Test.class);
+				Test test = (Test) annotation;
+
+				if (test.enabled()) {
+					try {
+						method.invoke(clazz.newInstance());
+						System.out.printf("%s - Test '%s' - passed %n", ++count, method.getName());
+						passed++;
+					} catch (Throwable e) {
+						System.out.printf("%s - Test '%s' - failed: %s %n", ++count, method.getName(), e.getCause());
+						failed++;
+					}
+				} else {
+					System.out.printf("%s - Test '%s' - ignored %n", ++count, method.getName());
+					ignore++;
 				}
 			}
 		}

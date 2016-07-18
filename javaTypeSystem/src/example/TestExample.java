@@ -3,6 +3,7 @@ package example;
 import annotation.Author;
 import annotation.ExecutionPriority;
 import annotation.PrintPriority;
+import annotation.Skip;
 import annotation.Test;
 
 /**
@@ -10,7 +11,9 @@ import annotation.Test;
  */
 @Author(createdBy = "Dmitri", priority = Author.Priority.MEDIUM, tags = {"Grads", "Training"})
 @ExecutionPriority(priority = ExecutionPriority.Priority.HIGH)
+@Skip
 public class TestExample {
+	
     @PrintPriority()
     public void print() {
         System.out.println("Priority " + ExecutionPriority.Priority.HIGH);
