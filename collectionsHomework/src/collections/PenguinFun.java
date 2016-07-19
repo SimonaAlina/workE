@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
-import java.util.TreeMap;
 
 public class PenguinFun {
 
@@ -80,8 +80,9 @@ public class PenguinFun {
 
 		Set<?> set = hm.entrySet();
 		Iterator<?> i = set.iterator();
+		Entry<PenguinRace, List<Penguin>> me = null;
 		while (i.hasNext()) {
-			Map.Entry me = (Map.Entry) i.next();
+			me = (Entry<PenguinRace, List<Penguin>>) i.next();
 			System.out.print(me.getKey() + ": ");
 			System.out.println(me.getValue().toString());
 		}
