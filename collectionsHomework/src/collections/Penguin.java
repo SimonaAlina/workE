@@ -59,6 +59,7 @@ public class Penguin {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((race == null) ? 0 : race.hashCode());
 		return result;
+		//return 31;
 	}
 
 	@Override

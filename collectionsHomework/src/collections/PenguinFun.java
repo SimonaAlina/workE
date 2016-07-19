@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -86,6 +87,30 @@ public class PenguinFun {
 			System.out.print(me.getKey() + ": ");
 			System.out.println(me.getValue().toString());
 		}
+		
+		/*
+		 * Homework *
+		 */
+		Map<String, List<Penguin>> hmL = new HashMap<>();
+		for(int nr = 0; nr < 100000; ++nr) {
+			for (Penguin p : penguinList) {
+				if(hmL.containsKey(p.getRace().toString())) {
+					List<Penguin> newList = hmL.get(p.getRace().toString());
+					newList.add(p);
+					hmL.put(p.getRace().toString(), newList);
+				} else {
+					List<Penguin> newList = new ArrayList<>();
+					newList.add(p);
+					hmL.put(p.getRace().toString(), newList);
+				}
+			}
+		}
+		long start = System.currentTimeMillis();
+		hmL.get("IMPERIAL");
+		long end = System.currentTimeMillis();
+		System.out.println(end-start);
+		
+		//Hashtable<String, List<Penguin>> ht = new Hashtable<>();
 	}
 
 }
