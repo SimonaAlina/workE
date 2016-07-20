@@ -24,3 +24,9 @@ collectionsHomework/.classpath
 collectionsHomework/.project
 ioStream/.classpath
 ioStream/.project
+concurrencyInJava/.classpath
+concurrencyInJava/.project
+concurrencyInJava/.settings
+**/.classpath
+**/.project
+**/.settings
