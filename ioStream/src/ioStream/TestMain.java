@@ -12,8 +12,11 @@ public class TestMain {
 
 	public static void main(String[] args) {
 
+		//task 1
 		System.out.println("Number of b: " + count("file1.txt", 5, 'b'));
+		//task 2
 		reverseWords("file1.txt", "output_file1.txt");
+		//task 3
 		iterateFiles("output_file2.txt", "D:/workspace/workE");
 	}
 
