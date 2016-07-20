@@ -13,8 +13,8 @@ public class TestMain {
 	public static void main(String[] args) {
 
 		System.out.println("Number of b: " + count("file1.txt", 5, 'b'));
-		reverseWords("file1.txt", "output_file.txt");
-		iterateFiles("file2.txt", "C:/Users/sroboiu/Desktop/Helper");
+		reverseWords("file1.txt", "output_file1.txt");
+		iterateFiles("output_file2.txt", "D:/workspace/workE");
 	}
 
 	public static int count(String fileName, long pos, char c) {
@@ -73,32 +73,21 @@ public class TestMain {
 		}
 	}
 
-	public static void listFiles(FileOutputStream f, File[] listOfFiles, String tab) throws IOException {
-		//File folder = new File(dirName);
+	public static void listFiles(FileOutputStream f, File folder, String tab) throws IOException {
 		//System.setProperty("user.dir", folder.getAbsolutePath());
-		// System.out.println(System.getProperty("user.dir"));
-
-//		if (!folder.isDirectory())
-//			return;
-//		
-//		File[] listOfFiles = folder.listFiles();
-		// System.out.println(listOfFiles.length);
-
+		//if (!folder.isDirectory())
+		//return;
+		
 		String fileName = new String();
+		File[] listOfFiles = folder.listFiles();
 		for (File file : listOfFiles) {
-			if (file.isFile()) {
-				fileName = tab + file.getName() + "\n";
-				// System.out.println("File " + i +": " +
-				// listOfFiles[i].getName());
-			} else if (file.isDirectory()) {
-				fileName = tab + file.getName() + "\n";
-				// System.out.println("DirFile " + i + ": " +
-				// listOfFiles[i].getName());
-				listFiles(f, file.listFiles(), tab + "    ");
-			}
+			fileName = tab + file.getName() + "\n";
 			byte[] bytes = fileName.getBytes();
 			f.write(bytes);
 			f.flush();
+			if (file.isDirectory()) {
+				listFiles(f, file, tab + "    ");
+			}
 		}
 	}
 
@@ -108,7 +97,7 @@ public class TestMain {
 			fileOutputStream = new FileOutputStream(writeFile, true);
 			File directory = new File(dir);
 			if (directory.isDirectory())
-				listFiles(fileOutputStream, directory.listFiles(), "");
+				listFiles(fileOutputStream, directory, "");
 		} catch (FileNotFoundException ex) {
 			System.out.println("File missing '" + writeFile + "'");
 		} catch (IOException ex) {
