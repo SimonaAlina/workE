@@ -1,4 +1,4 @@
-package concurrencyInJava;
+package numbers;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -43,7 +43,7 @@ public class WorkPool {
 		return tasks.remove();
 	}
 
-	synchronized void putWork(PartialSolution sp) {
+	public synchronized void putWork(PartialSolution sp) {
 		System.out.println("WorkPool - adaugare task: " + sp);
 		tasks.add(sp);
 		this.notify();

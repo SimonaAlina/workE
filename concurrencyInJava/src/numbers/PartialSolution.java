@@ -1,4 +1,4 @@
-package concurrencyInJava;
+package numbers;
 
 import java.util.List;
 

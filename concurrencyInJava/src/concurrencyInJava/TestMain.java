@@ -1,10 +1,16 @@
 package concurrencyInJava;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import numbers.PartialSolution;
+import numbers.WorkPool;
+import numbers.Worker;
+import words.WorkPoolJF;
 
 public class TestMain {
 
@@ -24,9 +30,9 @@ public class TestMain {
 		// call workPool'method for execution actions -> return list
 		NT = Runtime.getRuntime().availableProcessors();
 		
-		primeNumbersWithThreads();
-		
+		//primeNumbersWithThreads();
 		//primeNumbersOneThread();
+		percentageWords("");
 	}
 
 	public static void primeNumbersWithThreads() {
@@ -77,6 +83,14 @@ public class TestMain {
 				result.add(nr);
 		}
 		long endTime = System.currentTimeMillis();
+		System.out.println("Time: " + (endTime - startTime));
+	}
+
+	public static void percentageWords(String fileName) {
+		long startTime = System.currentTimeMillis();
+		new WorkPoolJF().computePercentage(new File(fileName));
+		long endTime = System.currentTimeMillis();
+		
 		System.out.println("Time: " + (endTime - startTime));
 	}
 }
