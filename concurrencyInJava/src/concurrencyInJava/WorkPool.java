@@ -1,6 +1,8 @@
 package concurrencyInJava;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class WorkPool {
 	// nr total de thread-uri worker
@@ -12,39 +14,17 @@ public class WorkPool {
 
 	LinkedList<PartialSolution> tasks = new LinkedList<PartialSolution>();
 
-	public WorkPool() {
-		this.nThreads = Runtime.getRuntime().availableProcessors();
-	}
-	
-	/**
-	 * Constructor pentru clasa WorkPool.
-	 * 
-	 * @param nThreads
-	 *            - numarul de thread-uri worker
-	 */
+	List<Integer> result = new ArrayList<>();
+
 	public WorkPool(int nThreads) {
 		this.nThreads = nThreads;
 	}
 
-	/**
-	 * Functie care incearca obtinera unui task din workpool. Daca nu sunt
-	 * task-uri disponibile, functia se blocheaza pana cand poate fi furnizat un
-	 * task sau pana cand rezolvarea problemei este complet terminata
-	 * 
-	 * @return Un task de rezolvat, sau null daca rezolvarea problemei s-a
-	 *         terminat
-	 */
 	public synchronized PartialSolution getWork() {
-		// workpool gol
-		if (tasks.size() == 0) { 
+		if (tasks.size() == 0) {
 			nWaiting++;
-			/*
-			 * condtitie de terminare: nu mai exista nici un task in workpool si
-			 * nici un worker nu e activ
-			 */
 			if (nWaiting == nThreads) {
 				ready = true;
-				/* problema s-a terminat, anunt toti ceilalti workeri */
 				notifyAll();
 				return null;
 			} else {
@@ -55,30 +35,29 @@ public class WorkPool {
 						e.printStackTrace();
 					}
 				}
-
 				if (ready)
-					/* s-a terminat prelucrarea */
 					return null;
-
 				nWaiting--;
-
 			}
 		}
 		return tasks.remove();
-
 	}
 
-	/**
-	 * Functie care introduce un task in workpool.
-	 * 
-	 * @param sp
-	 *            - task-ul care trebuie introdus
-	 */
 	synchronized void putWork(PartialSolution sp) {
 		System.out.println("WorkPool - adaugare task: " + sp);
 		tasks.add(sp);
-		/* anuntam unul dintre workerii care asteptau */
 		this.notify();
 	}
 
+	synchronized void addPartialResult(List<Integer> res) {
+		result.addAll(res);
+	}
+
+	public List<Integer> getResult() {
+		return result;
+	}
+
+	public void setResult(List<Integer> result) {
+		this.result = result;
+	}
 }
