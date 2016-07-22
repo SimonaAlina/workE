@@ -1,8 +1,15 @@
 package concurrencyInJava;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,25 +21,26 @@ import words.WorkPoolJF;
 
 public class TestMain {
 
-	static int len = 20000;
-	static int chunck = 400;
+	static int listLen = 20000;
+	static int chunckNr = 400;
 	static int NT;
 	static List<Integer> numbers;
-	static List<Integer> result;
+	static List<Integer> primeNumbers;
+	static Map<String, Double> percentage;
 
 	public static void main(String[] args) {
 		// create a list with random numbers
 		Random r = new Random();
 		numbers = new ArrayList<>();
-		for (int i = 0; i < len; ++i) {
+		for (int i = 0; i < listLen; ++i) {
 			numbers.add(r.nextInt(100));
 		}
-		// call workPool'method for execution actions -> return list
+		// number of threads
 		NT = Runtime.getRuntime().availableProcessors();
 		
 		//primeNumbersWithThreads();
 		//primeNumbersOneThread();
-		percentageWords("");
+		percentageWords("D:/workspace/workE/concurrencyInJava/file.txt");
 	}
 
 	public static void primeNumbersWithThreads() {
@@ -42,12 +50,12 @@ public class TestMain {
 		Worker[] workers = new Worker[NT];
 
 		long startTime = System.currentTimeMillis();
-		for (i = 0; i + chunck < len; i += chunck) {
-			sol = new PartialSolution(i, chunck, numbers);
+		for (i = 0; i + chunckNr < listLen; i += chunckNr) {
+			sol = new PartialSolution(i, chunckNr, numbers);
 			wp.putWork(sol);
 		}
-		if (i < len) {
-			sol = new PartialSolution(i, len - i, numbers);
+		if (i < listLen) {
+			sol = new PartialSolution(i, listLen - i, numbers);
 			wp.putWork(sol);
 		}
 
@@ -64,33 +72,72 @@ public class TestMain {
 			}
 		}
 		/* compute final list of prime numbers and print */
-		result = wp.getResult();
+		primeNumbers = wp.getResult();
 		long endTime = System.currentTimeMillis();
-		System.out.println(result);
+		System.out.println(primeNumbers);
 		System.out.println("Time: " + (endTime - startTime));
 	}
 
 	public static void primeNumbersOneThread() {
 		int i, j;
 		long startTime = System.currentTimeMillis();
-		result = new ArrayList<>();
+		primeNumbers = new ArrayList<>();
 		for(i = 0; i < numbers.size(); ++i) {
 			int nr = numbers.get(i);
 			for(j = 2; j < Math.sqrt(nr); ++j)
 				if(nr % j == 0)
 					break;
 			if(j >= Math.sqrt(nr))
-				result.add(nr);
+				primeNumbers.add(nr);
 		}
 		long endTime = System.currentTimeMillis();
 		System.out.println("Time: " + (endTime - startTime));
 	}
 
 	public static void percentageWords(String fileName) {
+		percentage = new HashMap<>();
+		WorkPoolJF.processingLength = 200;
+		
 		long startTime = System.currentTimeMillis();
-		new WorkPoolJF().computePercentage(new File(fileName));
+		percentage = new WorkPoolJF().computePercentage(new File(fileName));
 		long endTime = System.currentTimeMillis();
 		
-		System.out.println("Time: " + (endTime - startTime));
+		//write into a file
+		writeInFile("D:/workspace/workE/concurrencyInJava/output_file.txt", percentage);
+		System.out.println("Time: " + (endTime - startTime) + "; Size: " + percentage.size());
+		System.out.println(percentage);
+	}
+	
+	public static void writeInFile(String filename, Map<String, Double> hm) {
+		FileWriter f = null;
+		PrintWriter file = null;
+		StringBuffer output = new StringBuffer();
+		String line = null;
+
+		try {
+
+			f = new FileWriter(filename);
+			file = new PrintWriter(f);
+			for(Map.Entry<String, Double> e : hm.entrySet()) {
+				line = new String();
+				line = line.concat(e.getKey());
+				line = line.concat(";");
+
+				double value = e.getValue();
+				DecimalFormat df = new DecimalFormat("0.0000");
+				DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+				dfs.setDecimalSeparator(',');
+				df.setDecimalFormatSymbols(dfs);
+				df.setRoundingMode(RoundingMode.DOWN);
+				line = line.concat(df.format(value) + "\n");
+
+				output = output.insert(0, line);
+			}
+			file.print(output);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		file.close();
 	}
 }
