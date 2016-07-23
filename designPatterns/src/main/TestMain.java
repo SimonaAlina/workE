@@ -1,6 +1,12 @@
 package main;
 
+import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
+
 import letter.Alphabet;
+import observer.User;
+import observer.FacebookStream;
+import observer.PublicPage;
+import observer.TwitterStream;
 import pizza.Pizza;
 import pizza.PizzaFactory;
 import pizza.PizzaType;
@@ -22,14 +28,40 @@ public class TestMain {
 		new Alphabet().generateAlphabetMapping();
 		for(int i = 0 ; i < Alphabet.mapping.size(); ++i)
 			System.out.println(Alphabet.mapping.get(i).getLetter() + " - " + Alphabet.mapping.get(i).getNumber());
+		System.out.println();
 		
 		//ex 2
 		Pizza p1 = PizzaFactory.getPizza(PizzaType.PROSCIUTO);
 		System.out.println("Pizza type: " + p1.getType());
 		Pizza p2 = PizzaFactory.getPizza(PizzaType.DELUXE);
 		System.out.println("Pizza type: " + p2.getType());
+		System.out.println();
 		
 		//ex 3
+        User client1 = new User("Andra P");
+        User client2 = new User("Razvan B");
+        PublicPage pb1 = new PublicPage("Voltaj");
+        PublicPage pb2 = new PublicPage("Vunk");
+        
+        TwitterStream messageStream = new TwitterStream();	
+        messageStream.addObserver(client1);
+        messageStream.addObserver(client2);
+        messageStream.addObserver(pb1);
+        messageStream.addObserver(pb2);
+
+        messageStream.someoneTweeted();
+        System.out.println();
+        
+        FacebookStream fbStream = new FacebookStream();
+        fbStream.addObserver(client1);
+        fbStream.addObserver(client2);
+        fbStream.addObserver(pb1);
+        fbStream.addObserver(pb2);
+        
+        fbStream.someoneLiked();
+        
+        //ex 4
+        
 	}
 
 }
