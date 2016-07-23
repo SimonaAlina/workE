@@ -1,6 +1,9 @@
 package main;
 
 import letter.Alphabet;
+import pizza.Pizza;
+import pizza.PizzaFactory;
+import pizza.PizzaType;
 
 /*
  * Homework 
@@ -21,6 +24,10 @@ public class TestMain {
 			System.out.println(Alphabet.mapping.get(i).getLetter() + " - " + Alphabet.mapping.get(i).getNumber());
 		
 		//ex 2
+		Pizza p1 = PizzaFactory.getPizza(PizzaType.PROSCIUTO);
+		System.out.println("Pizza type: " + p1.getType());
+		Pizza p2 = PizzaFactory.getPizza(PizzaType.DELUXE);
+		System.out.println("Pizza type: " + p2.getType());
 		
 		//ex 3
 	}
