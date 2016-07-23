@@ -1,4 +1,7 @@
 package main;
+
+import letter.Alphabet;
+
 /*
  * Homework 
 
@@ -12,7 +15,14 @@ package main;
 public class TestMain {
 
 	public static void main(String[] args) {
+		//ex 1
+		new Alphabet().generateAlphabetMapping();
+		for(int i = 0 ; i < Alphabet.mapping.size(); ++i)
+			System.out.println(Alphabet.mapping.get(i).getLetter() + " - " + Alphabet.mapping.get(i).getNumber());
 		
+		//ex 2
+		
+		//ex 3
 	}
 
 }
