@@ -40,7 +40,7 @@ public class TestMain {
 		
 		//primeNumbersWithThreads();
 		//primeNumbersOneThread();
-		percentageWords("D:/workspace/workE/concurrencyInJava/file.txt");
+		percentageWords("D:/workspace/workE/concurrencyInJava_v1/file.txt");
 	}
 
 	public static void primeNumbersWithThreads() {
@@ -103,7 +103,7 @@ public class TestMain {
 		long endTime = System.currentTimeMillis();
 		
 		//write into a file
-		writeInFile("D:/workspace/workE/concurrencyInJava/output_file.txt", percentage);
+		writeInFile("D:/workspace/workE/concurrencyInJava_v2/output_file.txt", percentage);
 		System.out.println("Time: " + (endTime - startTime) + "; Size: " + percentage.size());
 		System.out.println(percentage);
 	}
