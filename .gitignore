@@ -32,3 +32,4 @@ junit-homework/.settings
 **/.classpath
 **/.project
 **/.settings
+**/pom.properties

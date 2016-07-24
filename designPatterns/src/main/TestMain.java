@@ -1,7 +1,5 @@
 package main;
 
-import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
-
 import letter.Alphabet;
 import observer.User;
 import observer.FacebookStream;
@@ -10,6 +8,11 @@ import observer.TwitterStream;
 import pizza.Pizza;
 import pizza.PizzaFactory;
 import pizza.PizzaType;
+import visitorDoc.Visitor;
+import visitorDoc.CharacterCountVisitor;
+import visitorDoc.Document;
+import visitorDoc.LineReader;
+import visitorDoc.WordCountVisitor;
 
 /*
  * Homework 
@@ -61,6 +64,15 @@ public class TestMain {
         fbStream.someoneLiked();
         
         //ex 4
+        LineReader ln = new LineReader();
+        ln.readFile("D:\\workspace\\workE\\designPatterns\\file.txt");
+        Document doc = new Document(ln.getLines());
+        Visitor visitor1 = new CharacterCountVisitor();
+        Visitor visitor2 = new WordCountVisitor();
+        int chars = doc.accept(visitor1);
+        System.out.println("Characters: " + chars);
+        int words = doc.accept(visitor2);
+        System.out.println("Words: " + words);
         
 	}
 
