@@ -9,6 +9,8 @@ public interface EmployeeDao {
 	public Employee find(int id);
 
 	public List<Employee> find(String employeeName);
+	
+	public List<Employee> findByIdAndCity(int id, String city);
 
 	public void save(Employee toBeSaved);
 

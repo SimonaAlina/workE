@@ -25,6 +25,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDao.find(employeeName);
 	}
 
+	public List<Employee> findByIdAndCity(int id, String city) {
+		return employeeDao.findByIdAndCity(id, city);
+	}
+	
 	@Transactional
 	public void save(Employee toBeSaved) {
 //		SessionFactory sF = new Configuration().configure().buildSessionFactory();

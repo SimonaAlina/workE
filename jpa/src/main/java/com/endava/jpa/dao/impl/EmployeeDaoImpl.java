@@ -17,6 +17,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private EntityManager entityManager;
 	
 	private String QUERY_FIND_EMPLOYEE_BY_NAME = "Select e from Employee e where e.name = :name";
+	private String QUERY_FIND_EMPLOYEE_BY_ID_AND_CITY = "Select e from Employee e where e.id = :id and e.city=:city";
 
 	public Employee find(int id) {
 		return entityManager.find(Employee.class, id);
@@ -28,6 +29,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				.getResultList();
 	}
 
+	public List<Employee> findByIdAndCity(int id, String city) {
+		return entityManager.createQuery(QUERY_FIND_EMPLOYEE_BY_ID_AND_CITY, Employee.class)
+				.setParameter("id", id)
+				.setParameter("city", city)
+				.getResultList();
+	}
+	
 	public void save(Employee toBeSaved) {
 		entityManager.persist(toBeSaved);
 	}

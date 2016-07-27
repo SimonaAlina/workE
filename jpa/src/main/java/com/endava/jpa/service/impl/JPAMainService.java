@@ -77,7 +77,12 @@ public class JPAMainService {
 	 * Make sure that there are more than two employees in Bucharest which belong to the department with id=1 when populating the DB.
 	 * ! Use a join query.
 	 */
-	public void getEmployeesFromBucharest(){}
+	public void getEmployeesFromBucharest(){
+		List<Employee> employees = employeeService.findByIdAndCity(1, "Bucharest");
+		for(Employee employee : employees) {
+			System.out.println(employee);
+		}
+	}
 
 	/**
 	 * Give a salary raise(+10%) for all employees that work in the 'Endava' project (project name = 'Endava').
