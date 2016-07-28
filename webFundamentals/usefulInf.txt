@@ -1,0 +1,31 @@
+I. RestfulApis
+
+	1. Create project in Eclipse
+	2. In cmd: mvn clean install
+	3. Install postman in chrome (extension)
+	4. Add in Headers (Content-Type - application/json)
+	5. GET http://localhost:9090/restfulapis
+	   GET http://localhost:9090/restfulapis/comment
+	   
+	   POST http://localhost:9090/restfulapis/comment
+	   Body: {
+				"name":"Simona",
+				"email":"simona@yahoo.com",
+				"comment":"good",
+				"date":"2016-07-28"
+			}
+			
+		PUT http://localhost:9090/restfulapis/comment/1
+		Body: {
+				"name":"Simona Alina",
+				"email":"simona@yahoo.com",
+				"comment":"good",
+				"date":"2016-07-28"
+			}
+	
+II. SignIn
+
+	1. Run in browser: http://localhost:9090/signin
+	
+** Install Tomcat and follow instructions from here: https://www.ntu.edu.sg/home/ehchua/programming/howto/Tomcat_HowTo.html
+** Copy war file generated in tomcat folder, in webapps
