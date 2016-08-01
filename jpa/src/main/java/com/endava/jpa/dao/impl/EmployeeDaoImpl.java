@@ -38,6 +38,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	
 	public void save(Employee toBeSaved) {
 		entityManager.persist(toBeSaved);
+		entityManager.flush();
 	}
 
 	public void update(Employee toBeUpdated) {

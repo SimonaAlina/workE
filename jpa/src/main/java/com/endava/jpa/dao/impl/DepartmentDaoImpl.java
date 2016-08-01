@@ -27,17 +27,15 @@ public class DepartmentDaoImpl implements DepartmentDao {
 	}
 
 	public void save(Department toBeSaved) {
-		// To be implemented
 		entityManager.persist(toBeSaved);
+		entityManager.flush();
 	}
 
 	public void update(Department toBeUpdated) {
-		// To be implemented
 		entityManager.merge(toBeUpdated);
 	}
 
 	public void remove(Department toBeRemoved) {
-		// To be implemented
-		entityManager.remove(toBeRemoved);
+		entityManager.remove(entityManager.merge(toBeRemoved));
 	}
 }

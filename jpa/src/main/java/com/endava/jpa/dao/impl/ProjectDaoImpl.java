@@ -30,6 +30,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
 	public void save(Project toBeSaved) {
 		entityManager.persist(toBeSaved);
+		entityManager.flush();
 	}
 
 	public void update(Project toBeUpdated) {

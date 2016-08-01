@@ -23,14 +23,14 @@ public class JPAMainService {
 	private ProjectService projectService;
 
 	//-------------------------------------- Department -----------------------------/
-
+	
 	public void findDepartment() {
 		Department department = departmentService.find(1);
 		System.out.println(department);
 	}
 
 	public void findDepartmentByName() {
-		List<Department> departments = departmentService.find("Prj");
+		List<Department> departments = departmentService.find("dept1");
 		for(Department department : departments) {
 			System.out.println(department);
 		}
