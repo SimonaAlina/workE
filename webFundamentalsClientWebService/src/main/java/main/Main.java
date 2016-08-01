@@ -8,16 +8,35 @@ public class Main {
 
 	public static void main(String[] args) {
 		CommentWebServiceClient client = new CommentWebServiceClientImpl();
-		
-		//client.findAll();
+		System.out.println(client.findAll());
 		
 		Comment c1 = new Comment();
-		c1.setId(1);
+		c1.setId(1L);
+		c1.setName("Simona");
+		c1.setEmail("1@gmail.com");
 		c1.setComment("comm1");
 		
-		//client.save(c1);
+		client.save(c1);
 		
-		client.findById((long)1);
+		Comment c2 = new Comment();
+		c2.setId(2L);
+		c2.setName("Alina");
+		c2.setEmail("2@gmail.com");
+		c2.setComment("comm2");
+		
+		client.save(c2);
+				
+		System.out.println(client.findAll());
+		
+		c2.setName("Alina R");
+		client.update(c2);
+		
+		System.out.println(client.findAll());
+		
+		client.delete(1L);
+		client.delete(2L);
+		
+		System.out.println(client.findAll());
 		
 	}
 }
