@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="helloo_world">HelloWorld</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="title_activity_layout">LayoutActivity</string>
+    <string name="title_activity_relative">RelativeActivity</string>
+</resources>
