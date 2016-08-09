@@ -24,15 +24,15 @@ public class DashboardController {
     private AuthenticationService authenticationService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String dashboard(Model model, HttpServletRequest request, HttpServletResponse response) {
+    public Object dashboard(Model model, HttpServletRequest request, HttpServletResponse response) {
         if (authenticationService.isLogged(request)) {
             String loggedUser = authenticationService.getLoggedUser(request);
             model.addAttribute("user", loggedUser);
-            return "dashboard";
+            return "/dashboard";
         } else {
             model.addAttribute("message", "Please login first!");
             response.setStatus(SC_FORBIDDEN);
-            return "login";
+            return "/login";
         }
     }
 

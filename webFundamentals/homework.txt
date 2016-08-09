@@ -1,0 +1,17 @@
+Exercitii:
+1.	Adaugati urmatoarele functionalitati aplicatiei de “signin”:
+a.	O pagina jsp în care afisati într-un tabel toti utilizatorii înregistrati.
+b.	În formularul de register, daca aveti mai multe erori în formular, afisati-le pe toate sub forma de lista.
+c.	Autentificarea trebuie sa funtioneze cu utilizatorii înregistrati (momentan datele de autentificare erau luate din fisierul de proprietati).
+
+2.	Refactorizati un pic aplicatia “signin” prin adaugarea layerului de servicii.
+
+3.	Creati o aplicatie web de la 0 care va expune niste servicii REST pentru orice entitate doriti voi. Puteti alege Spring clasic sau Spring Boot. Datele trebuiesc persistate într-o baza de date de tip MySQL, iar pentru persistare puteti sa folositi Spring Data JPA sau ceva mai clasic cum ati facut la prezentarea de JPA. Trebuie sa aveti urmatoarele layere în aplicatie:
+a.	Controller care lucreaza numai cu DTO-uri
+b.	ViewService – un serviciu care se ocupa cu transformarea obiectelor de tip DTO în Entity si învers 
+c.	Service – serviciu care realizeaza operatii pe obiecte de tip entity 
+d.	Repostory / DTO 
+
+Exerci?ii Bonus:
+1.	La aplicatia realizata la punctul 3 trebuie sa mai faceti un endpoint care salveaza un fisier pe disk si returneaza un id. Când salvati fisierul pe disk salvati aceasta operatie si într-o tabela cu documente (care contine momentan doar numele fisierul salvat pe disk si path-ul de pe disk catre acesta).
+2.	Schimbati metoda de autentificare pentru aplicatia “signin” astfel încât sa folositi un interceptor. 

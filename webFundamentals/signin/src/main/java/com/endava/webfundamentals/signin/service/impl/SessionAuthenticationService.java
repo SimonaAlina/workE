@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 @Service("sessionAuthenticationService")
 public class SessionAuthenticationService extends AbstractAuthenticationService {
 
+    @Override
     public boolean login(UserCredentialDTO userCredentialDTO, HttpServletRequest request, HttpServletResponse response) {
         if (isValid(userCredentialDTO)) {
             HttpSession session = request.getSession();
@@ -24,12 +25,15 @@ public class SessionAuthenticationService extends AbstractAuthenticationService 
         }
     }
 
+    @Override
     public boolean isLogged(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Object token = session.getAttribute(SESSION);
-        return token != null && users.contains(token.toString());
+        //return token != null && users.contains(token.toString());
+        return token != null && userService.findByUsername(token.toString()) != null;
     }
 
+    @Override
     public String getLoggedUser(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Object token = session.getAttribute(SESSION);
@@ -40,6 +44,7 @@ public class SessionAuthenticationService extends AbstractAuthenticationService 
         }
     }
 
+    @Override
     public void logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.removeAttribute(SESSION);

@@ -18,21 +18,22 @@
 <body>
 	<div class="container">
 		<form class="form-signin" method="POST"
-			action="<c:url value="/user/login"/>">
-			<h2 class="form-signin-heading">Authentication</h2>
+			action="<c:url value="/user/register"/>">
+			<h2 class="form-signin-heading">Register</h2>
 
 			<c:if test="${not empty message}">
 				<div class="alert alert-danger">${message}</div>
 			</c:if>
 
-			<label for="inputUsername" class="sr-only">Username</label> <input
-				name="username" type="text" id="inputUsername" class="form-control"
-				placeholder="Username" required autofocus> <label
-				for="inputPassword" class="sr-only">Password</label> <input
-				name="password" type="password" id="inputPassword"
-				class="form-control" placeholder="Password" required>
+			<input name="username" type="text" id="inputUsername"
+				class="form-control" placeholder="Username" required autofocus>
 
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+			<input name="password" type="password" id="inputPassword"
+				class="form-control" placeholder="Password" required> <input
+				name="repeatPassword" type="password" id="inputPassword"
+				class="form-control" placeholder="Repeat Password" required>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 		</form>
 	</div>
 </body>

@@ -20,6 +20,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="<c:url value="/user/login"/>">Login</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="<c:url value="/user/register"/>">Register</a></li>
+            </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>

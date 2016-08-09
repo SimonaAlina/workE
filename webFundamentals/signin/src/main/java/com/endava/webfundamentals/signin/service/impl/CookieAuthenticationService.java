@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 @Service("cookieAuthenticationService")
 public class CookieAuthenticationService extends AbstractAuthenticationService{
 
+    @Override
     public boolean login(UserCredentialDTO userCredentialDTO, HttpServletRequest request, HttpServletResponse response) {
         if (isValid(userCredentialDTO)) {
             Cookie cookie = new Cookie(SESSION, userCredentialDTO.getUsername());
@@ -26,16 +27,19 @@ public class CookieAuthenticationService extends AbstractAuthenticationService{
         }
     }
 
+    @Override
     public boolean isLogged(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
             if (SESSION.equals(cookie.getName())) {
-                return users.contains(cookie.getValue());
+            	//return users.contains(cookie.getValue());
+                return userService.findByUsername(cookie.getValue()) != null;
             }
         }
         return false;
     }
 
+    @Override
     public String getLoggedUser(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
@@ -46,6 +50,7 @@ public class CookieAuthenticationService extends AbstractAuthenticationService{
         return null;
     }
 
+    @Override
     public void logout(HttpServletRequest request, HttpServletResponse response) {
         Cookie cookie = new Cookie(SESSION, null);
         cookie.setPath("/");
