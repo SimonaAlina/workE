@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: mvc
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: sroboiu
+Implementation-Vendor-Id: com.endava
+Build-Jdk: 1.8.0_101
+Implementation-URL: http://projects.spring.io/spring-boot/mvc/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
